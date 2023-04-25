@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+//각 대각선과 열의 점유 상태를 나타낼 bool 변수
 bool isused1[40]; // column을 차지하고 있는지
 bool isused2[40]; // / 방향 대각선을 차지하고 있는지
 bool isused3[40]; // \ 방향 대각선을 차지하고 있는지
