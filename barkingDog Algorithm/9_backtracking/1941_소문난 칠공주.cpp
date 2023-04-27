@@ -21,10 +21,12 @@ int main(void) {
     int dasom = 0, adj = 0;
     bool isp7[5][5] = {}, vis[5][5] = {};
     for (int i = 0; i < 25; i++)
-      if (!mask[i]) {
+      if (!mask[i]) {//마스크가 아니라면, 즉 1이 아니라면, 즉 0이라면. 여기서 1이 마스크를
+      //씌운것이다
         int x = i / 5, y = i % 5;
-        isp7[x][y] = true;
-        if (q.empty()) {
+        isp7[x][y] = true;//얘가 결국 7명으로 선택된 애라는 소리.
+        if (q.empty()) {//empty일때만 q에 push하므로, 가장 먼저 발견한 시작점만 
+        //BFS 탐색의 시작점으로 해서 돌리겠다는 의미
           q.push({x, y});
           vis[x][y] = true;
         }

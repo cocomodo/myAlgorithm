@@ -4,13 +4,12 @@ using namespace std;
 int n, m;
 int arr[10];
 int num[10];
-bool  isused[10];
+bool isused[10];
 
 void func(int k) {
 	if (k == m) {
-		for (int i = 0; i < m; i++) {
-			cout << arr[i] << ' ';
-		}
+		for (int i = 0; i < m; i++)
+			cout << num[arr[i]] << ' ';
 		cout << '\n';
 		return;
 	}
@@ -19,18 +18,13 @@ void func(int k) {
 		if (isused[i]) continue;
 		if (tmp == num[i]) continue;
 		isused[i] = 1;
-		arr[k] = num[i];
-		tmp = arr[k];
+		arr[k] = i;
+		tmp = num[i];
+		//tmp = num[arr[k]]; 로 작성해도된다.
 		func(k + 1);
 		isused[i] = 0;
-		/*if (!isused[i] && tmp != num[i]) {
-			isused[i] = true;
-			arr[k] = num[i];
-			tmp = arr[k];
-			func(k + 1);
-			isused[i] = false;
-		}*/
 	}
+	return;
 }
 
 int main() {
@@ -41,4 +35,5 @@ int main() {
 		cin >> num[i];
 	sort(num, num + n);
 	func(0);
+	return 0;
 }

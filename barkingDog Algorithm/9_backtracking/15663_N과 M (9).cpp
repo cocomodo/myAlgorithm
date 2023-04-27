@@ -23,7 +23,7 @@ void func(int k) { // 현재 k개까지 수를 택했음.
       func(k + 1);
       isused[i] = false;
     }
-  }
+  } 
 }
 
 int main(void) {
