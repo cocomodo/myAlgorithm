@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int d[10005];
+int d[1005];
 int mod = 10007;
 
 int main(void){
