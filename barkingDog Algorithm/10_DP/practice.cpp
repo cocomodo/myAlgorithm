@@ -1,39 +1,37 @@
+//0.5s 256MB
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
-int board[1005][1005];
-int d[1005][1005]; // d[i][j]: i,j를 우측 끝으로 하는 최대 크기 정사각형의 한 변의 길이;
+int n;
+int a[2005];
+int m;
+int d[2005][2005];
+
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin>>n>>m;
-    
-    for(int i=1; i<=n; i++){
-        string s;
-        cin>>s;
-        for(int j=1; j<=m; j++){
-            board[i][j]=s[j-1]-'0';
-        }
-    }
-    int ans=0;
-    for(int i=1; i<=n;i++){
-        for(int j=1; j<=m; j++){
-            if(board[i][j]==1){ //board[i][j] 의 값이 1일때만 판단 한다는것이 굉장히 중요하다고 보여진다. 
-            //보드의 원소의 값이 1일때만 이런 판단을 하고, 그렇지 않은 경우는 모두 d[i][j]==0이기 때문에, 
-            //보드가 원소가 1인 값들에서 판단을 해서 왼쪽, 위쪽, 대각선 왼쪽위의 최소값을 구해보면, 
-            //0인 부분이 끼어있다면 min에 의해서 d[i][j] 값은 무조건 0+1이 되어서 1이 될것이다.
-            //즉 한칸짜리 정사각형이 되는 것이다. 그런데 아래과 같은 과정을 만약에 정사각형에서 진행한다면, 
-            //왼쪽도 보드가 1, 위쪽도 보드가 1, 그리고 대각선 왼쪽도 보드가 1이기 때문에, d[i][j]==2가 된다.
-            //이와 같은 로직으로 진행하면, 정사각형의 형태일때 최소값에 +1을 통해서 최대 정사각형의 한변의
-            //길이를 알 수 있게 된다. 라고 이해가 되는데 아직도 아리송 한것 같기도 하다. 
-            
-                d[i][j]=min({d[i-1][j],d[i][j-1],d[i-1][j-1]})+1;
-                ans=max(ans,d[i][j]);
-            }
-        }
-    }
-    cout<<ans*ans;
+    cin>>n;
+    for(int i=1; i<=n;i++)
+        cin>>a[i];
 
+    for(int i=1; i<=n; i++){
+        d[i][i]=1;
+        if(a[i-1]==a[i]) d[i-1][i]=1;
+    }
+    for(int gap=2; gap<n; gap++){
+        for(int i=1; i<=n-gap; i++){
+            int s=i, e=i+gap;
+            if(a[s]==a[e]&&d[s+1][e-1]) d[s][e]=1;
+        }
+    }
+
+
+    cin>>m;
+    while(m--){
+        int s,e;
+        cin>>s>>e;
+        cout<<d[s][e]<<'\n';
+    }
+    return 0;
 }
