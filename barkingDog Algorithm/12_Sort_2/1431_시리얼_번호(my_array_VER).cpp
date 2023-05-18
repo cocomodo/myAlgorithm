@@ -5,7 +5,7 @@ int n;
 string s[55];
 
 bool cmp(const string& a,const string& b)  {
-    cout<<"Comparing "<<a<<" and "<<b<<'\n';
+    // cout<<"Comparing "<<a<<" and "<<b<<'\n';
     int lena=a.size(),lenb=b.size();
     int suma=0, sumb=0;
     if(lena!=lenb) return lena<lenb;
