@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
-using namespace std;
+using  namespace std;
 
 int n;
 long long a[100'005];
 
 int main(){
-    ios::sync_with_stdio(0); 
+    ios::sync_with_stdio(0);
     cin.tie(0);
     cin>>n;
     for(int i=0; i<n; i++)
@@ -25,6 +25,6 @@ int main(){
             cnt=1;
         }
     }
-    //if(cnt>mxcnt) mxval=a[n-1]; //a[n]=(1ll<<62)+1;로 대입하고 n번째까지 확인하지 않고, 그냥 n-1까지만 시행하고, 가장 맨 마지막 원소일때를 이렇게 for문을 다 돌고 나서 맨 마지막에 마지막 원소에서 판단해주는 코드. 
+    // if(cnt>mxcnt) mxval=a[n-1];//제일 마지막 수가 몇 번 등장했는지를 별도로 확인
     cout<<mxval;
 }
