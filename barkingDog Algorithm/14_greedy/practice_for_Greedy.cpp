@@ -1,18 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, ans;
-int p[1005];
-
+int tmp, ans;
+int sign=1;
 int main(){
-    ios::sync_with_stdio(0); 
+    ios::sync_with_stdio(0);
     cin.tie(0); 
 
-    cin>>n;
-    for(int i=0; i<n; i++)
-        cin>>p[i];
-    sort(p,p+n);
-    for(int i=0; i<n; i++)
-        ans+=p[i]*(n-i);
+    string input;
+    cin>>input;
+    for(char c: input){
+        if(c=='+'||c=='-'){
+            ans+=tmp*sign;
+            if(c=='-') sign=-1;
+            tmp=0;
+        }
+        else{
+            tmp*10;
+            tmp+=c-'0';
+        }
+    }
+    ans+=tmp*sign;
     cout<<ans;
 }
