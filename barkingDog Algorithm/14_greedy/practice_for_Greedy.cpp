@@ -5,7 +5,7 @@ long long ans;
 
 void seqSum(vector<int> v){
     while(1<v.size()){
-        ans+=&(v.end()-1)*&(v.end()-2);
+        ans+=*(v.end()-1)*(*(v.end()-2));
         v.pop_back();
         v.pop_back();
     }
