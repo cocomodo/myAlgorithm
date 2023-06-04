@@ -1,27 +1,21 @@
 #include <bits/stdc++.h>
-using  namespace std;
-
+using namespace std;
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    
-    int t, n;
-    cin>>t;
 
-    while(t--){
-        cin>>n;
-        int ans=0;
-        vector<bool> state(n+1,true);
-        for(int i=2;i<=n;i++){
-            for(int j=i;j<=n;j+=i){
-                if(state[j]) state[j]=false;
-                else state[j]=true;
-            }
+    int n;
+    cin>>n;
+    int ans=0;
+    while(n>=0){
+        if(n%5==0){
+            ans+=n/5;
+            cout<<ans;
+            return 0;
         }
-        for(int i=1;i<=n; i++){
-            if(state[i])  ans+=1;
-        }
-        cout<<ans<<'\n';
+        n-=3;
+        ans++;
     }
+    cout<<-1;
 }
