@@ -1,12 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<bool> state(1'000'005,true);
-
 vector<int> sieve(int n){
     vector<int> primes;
+    vector<bool> state(n+1,true);
     state[1]=false;
-    for(int i=2; i*i<=n;i++){
+    for(int i=2;i*i<=n;i++){
         if(!state[i]) continue;
         for(int j=i*i;j<=n;j+=i)
           state[j]=false;
@@ -17,7 +16,8 @@ vector<int> sieve(int n){
     return primes;
 }
 
-int t, n;
+int t,n;
+// int ans;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -27,10 +27,18 @@ int main(){
     while(t--){
         ans=0;
         cin>>n;
-        for(auto p: primes){
+        for(auto p:primes){
             if(p*2>n) break;
-            if(state[n-p]) ans++;
+            for(auto q:primes){
+                if(q*2<n) continue;
+                if(q>=n) break;
+                if(p+q==n){
+                    ans++;
+                    // cout<<p<<' '<<q<<'\n';
+                }
+            }
         }
         cout<<ans<<'\n';
     }
+
 }
