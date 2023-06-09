@@ -1,6 +1,22 @@
-/*
-3
-0 3 ==> 0, 1, 2 3(안전을 위해 2로 도착한뒤 2에서 1만큼 이동해서 3으로 가야한다. 그러기 위해선)
-1 5
-45 50 
-*/
+#include <bits/stdc++.h>
+using namespace std;
+
+int func(int n) {
+    int i=1;
+    int sum=0;
+    while(n>i){
+        sum+=i*i;
+        n-=i;
+        i++;
+    }
+    return sum+i*n;
+}
+
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    int a, b;
+    cin>>a>> b;
+    cout<<func(b)-func(a-1);
+}
