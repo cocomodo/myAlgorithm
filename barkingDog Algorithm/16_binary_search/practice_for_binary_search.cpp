@@ -1,43 +1,30 @@
-//중요한것. compress함수, 그리고 compare 함수. 압축하고, 차례대로 비교하고. 
 #include <bits/stdc++.h>
 using namespace std;
 
-int m, n; 
-int arr[102][10'005];
-
-void compress(int a[]){
-    vector<int> v(a,a+n);
-    sort(v.begin(),v.end());
-    v.erase(unique(v.begin(),v.end()),v.end());
-    for(int i=0; i<n; i++)
-      a[i]=lower_bound(v.begin(),v.end(),a[i])-v.end();
-}
-
-bool compare(int a[],int b[]){/*이게 a[]와 b[]가, 입력으로 arr[i],arr[j]가 주어졌을때, 행에 대한 연산이 아니라 열에 대한 연산을 한다는것을 주의해야 한다.*/
-    for(int i=0; i<n;i++){
-        if(a[i]!=b[i]) return false;
-    }
-    return true;
-}
-
-
+int n;
+int a[10'005];
+long long cnt;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin>>m>>n;
-    for(int i=0; i<m; i++){
-        for(int j=0;j<n;j++){
-            cin>>arr[i][j];
-        }
-    }
-    for(int i=0; i<m; i++){
-        compress(arr[i]);
-    }
-    int cnt=0;
-    for(int i=0; i<m-1;i++){
-        for(int j=i+1;j<m;j++){
-            cnt+=compare(arr[i],arr[j]);
+    cin>>n;
+    for(int i=0; i<n; i++) cin>>a[i];
+    sort(a,a+n);
+    for(int st=0; st<n-2;st++){
+        int mid=st+1;
+        int en=n-1;
+        while(mid<en){
+            int cur=a[st]+a[mid]+a[en];
+            if(cur==0) {
+                cnt++;
+                // cout<<'('<<a[st]<<','<<a[mid]<<','<<a[en]<<')'<<'\n';
+            }
+            if(cur>0) en--;
+            else mid++;
         }
     }
     cout<<cnt;
 }
+//10
+//2 -5 2 3 -4 7 -4 0 1 -6
+//-6 -5 -4 -4 0 1 2 2 3 7
