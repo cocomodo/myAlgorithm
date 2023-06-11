@@ -6,6 +6,7 @@
         "algorithm": "cpp",
         "utility": "cpp",
         "ios": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "xiosbase": "cpp"
     }
 }
