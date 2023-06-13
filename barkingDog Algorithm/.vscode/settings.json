@@ -7,6 +7,7 @@
         "utility": "cpp",
         "ios": "cpp",
         "numeric": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "iosfwd": "cpp"
     }
 }
