@@ -27,5 +27,5 @@ int main() {
 	cin >> n;
 	vector<int> primes;
 	primes = sieve(n);
-	iterator primes.begin();
+	// iterator primes.begin();
 }
