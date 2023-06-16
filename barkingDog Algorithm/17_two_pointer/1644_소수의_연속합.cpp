@@ -1,31 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n;
+const int MXN = 4000002;
+vector<bool> seive(MXN, true);
+vector<int> primes;
+int main(void) {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  
+  for(int i=2; i*i<MXN; i++){
+    if (!seive[i]) continue;
+    for (int j = i * i; j < MXN; j += i) 
+      seive[j] = false;
+  }
+  for (int i = 2; i < MXN; i++) if (seive[i]) primes.push_back(i);
+  primes.push_back(0);
 
-vector<int> sieve(int n) {
-	vector<int> primes;
-	vector<bool> checks(n + 1,true);
-	checks[1] = false;
-	for (int i = 2; i * i <= n; i++) {
-		for (int j = 2 * i; j<= n; j += i) {
-			//이 속은 j에 대해서 기록해야 하는데 몇번 i로 작성했다. 
-			//주의하도록 하자. 
-			if (!checks[j]) continue;
-			checks[j] = false;
-		}
-	}
-	for (int i = 2; i <= n; i++) {
-		if (checks[i]) primes.push_back(i);
-	}
-	return primes;
-}
-
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n;
-	vector<int> primes;
-	primes = sieve(n);
-	// iterator primes.begin();
+  int target, s = 0, e = 1, ans = 0, tmpSum = primes[0];
+  cin >> target;
+  while (1) {
+    if (tmpSum == target) ans++;
+    if (tmpSum <= target) tmpSum += primes[e++];
+    if (target < tmpSum) tmpSum -= primes[s++];
+    if (e == int(primes.size())) break;
+  }
+  cout << ans;
 }
