@@ -2,7 +2,7 @@
 using namespace std;
 
 int n, d, k, c;
-int a[3'000'005*2];
+int a[30'001*2];
 int chk[3'001];
 int ans;
 int mxans;
