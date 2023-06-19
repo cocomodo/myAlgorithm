@@ -8,6 +8,8 @@
         "ios": "cpp",
         "numeric": "cpp",
         "xiosbase": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "unordered_map": "cpp",
+        "__hash_table": "cpp"
     }
 }
