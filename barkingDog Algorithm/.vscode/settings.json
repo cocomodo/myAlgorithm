@@ -11,6 +11,8 @@
         "iosfwd": "cpp",
         "unordered_map": "cpp",
         "__hash_table": "cpp",
-        "__config": "cpp"
+        "__config": "cpp",
+        "string": "cpp",
+        "unordered_set": "cpp"
     }
 }
