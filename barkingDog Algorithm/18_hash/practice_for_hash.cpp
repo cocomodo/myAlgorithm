@@ -1,40 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int ttoi(string time){
-    int t;
-    string h, m;
-    h=time.substr(0,2);
-    m=time.substr(3,2);
-    t=60*(stoi(h))+stoi(m);    
-    return t;
+string board[10];
+int n, m, k;
+int dx[8]={-1,-1,-1,0,0,1,1,1};
+int dy[8]={-1,0,1,-1,1,-1,0,1};
+unordered_map<string,int> cnt;
+
+void dfs(int i, int j, string s){
+    cnt[s]++;
+    if(s.size()==5) return;
+    for(int dir=0; dir<8; dir++){
+        int nx=(i+dx[dir]+n)%n;
+        int ny=(j+dy[dir]+m)%m;
+        dfs(nx,ny,s+board[nx][ny]);
+    }
 }
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-
-    unordered_set<string> slist;
-    unordered_set<string> flist;
-    string st_t, en_t, quit_t;
-    cin>>st_t>>en_t>>quit_t;
-    int st_tnum,en_tnum, quit_tnum;
-    st_tnum=ttoi(st_t);
-    en_tnum=ttoi(en_t);
-    quit_tnum=ttoi(quit_t);
-    while(true){
-        string ch_t, user_id;
-        cin>>ch_t>>user_id;
-        if(cin.eof()==true) break;
-        int ch_tnum;
-        ch_tnum=ttoi(ch_t);
-        if(ch_tnum<=st_tnum)
-            slist.insert(user_id);
-        if(ch_tnum>=en_tnum && ch_tnum<=quit_tnum){
-            if(slist.find(user_id)!=slist.end()){
-                flist.insert(user_id);
-            }
-        }
+    cin>>n>>m>>k;
+    for(int i=0; i<n; i++) cin>>board[i];
+    for(int i=0; i<n; i++)
+        for(int j=0; j<m; j++) dfs(i,j,string(1,board[i][j]));
+    while(k--){
+        string s;
+        cin>>s;
+        cout<<cnt[s]<<'\n';
     }
-    cout<<flist.size();
 }
