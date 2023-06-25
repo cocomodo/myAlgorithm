@@ -13,6 +13,7 @@
         "__hash_table": "cpp",
         "__config": "cpp",
         "string": "cpp",
-        "unordered_set": "cpp"
+        "unordered_set": "cpp",
+        "set": "cpp"
     }
 }

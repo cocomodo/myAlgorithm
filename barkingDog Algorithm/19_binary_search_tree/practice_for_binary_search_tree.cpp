@@ -1,34 +1,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int n, m, p, l , x;
+int probToLevel[100'005];
+set<int> probBylevel[105];
+
+
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int t;
-    cin>>t;
-    while(t--){
-        int k;
-        cin>>k;
-        multiset<int> ms;
-        while(k--){
-            char com;
-            cin>>com;
-            if(com=='D'){
-                int q;
-                cin>>q;
-                if(ms.empty()) continue;
-                if(q==1) ms.erase(prev(ms.end()));
-                else ms.erase(ms.begin());
+    cin>>n;
+    while(n--){
+        int prob, level;
+        cin>>prob>>level;
+        probToLevel[prob]=level;
+        probBylevel[level].insert(prob);
+    }
+    cin>>m;
+    while(m--){
+        string query;
+        cin>>query;
+        if(query=="add"){
+            int prob, level;
+            cin>>prob>>level;
+            probToLevel[prob]=level;
+            probBylevel[level].insert(prob);
+        }
+        else if(query=="recommend"){
+            cin>>x;
+            if(x==1){
+                for(int i=100; i>=1;i--){
+                    if(probBylevel[i].empty()) continue;
+                    auto it=prev(probBylevel[i].end());
+                    cout<<*it<<'\n';
+                    break;
+                }
             }
-            else {
-                int q;
-                cin>>q;
-                ms.insert(q);
+            else{//x==-1;
+                for(int i=1; i<=100; i++){
+                    if(probBylevel[i].empty()) continue;
+                    auto it=probBylevel[i].begin();
+                    cout<<*it<<'\n';
+                    break;
+                }
             }
         }
-        if(ms.empty())  cout<<"EMPTY\n";
-        else{
-            cout<<*prev(ms.end())<<' '<<*ms.begin()<<'\n';
+        else if(query=="solved"){
+            int q;
+            cin>>q;
+            probBylevel[probToLevel[q]].erase(q);
         }
     }
 }
