@@ -14,6 +14,7 @@
         "__config": "cpp",
         "string": "cpp",
         "unordered_set": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "queue": "cpp"
     }
 }
