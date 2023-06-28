@@ -31,14 +31,14 @@ int main(){
     cin.tie(0);
     int n;
     cin>>n;
-    for(int i=0; i<n; i++){
-        int t;
-        cin>>t;
-        midle_set.insert(t);
-        auto it1=0;
-        auto it2=prev(midle_set.end())-midle_set.begin();
-        auto it3=(it1+it2)/2;
-        cout<<*
-    }
+    // for(int i=0; i<n; i++){
+    //     int t;
+    //     cin>>t;
+    //     midle_set.insert(t);
+    //     auto it1=0;
+    //     auto it2=prev(midle_set.end())-midle_set.begin();
+    //     auto it3=(it1+it2)/2;
+    //     cout<<*
+    // }
 
 }
