@@ -11,8 +11,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+
+
 vector<int> adj[10];
 bool vis[10];
+
 void bfs(){
     queue<int> q;
     q.push(1);
@@ -29,6 +33,7 @@ void bfs(){
     }
 }
 int dist[10];
+
 void bfs_lth(){
     fill(dist, dist+10,-1);
     queue<int> q;
@@ -48,6 +53,7 @@ void bfs_lth(){
 //비재귀 DFS 첫번째 버전. 관념적 DFS와 다름
 vector<int> adj[10]; 
 bool vis[10];
+
 void dfs(){
     stack<int> s;
     s.push(1);
@@ -66,6 +72,7 @@ void dfs(){
 //재귀 DFS. 관념적 DFS와 같음.
 vector<int> adj[10];
 bool vis[10];
+
 void dfs(int cur){
     vis[cur]=true;
     cout<<cur<<' ';
@@ -78,6 +85,7 @@ void dfs(int cur){
 //비재귀 DFS를 이용해야 할때, 이런식의 비재귀 DFS의 두번째 버전을 사용해야 함.
 vector<int> adj[10];
 bool vis[10];
+
 void dfs(){
     stack<int> s;
     s.push(1);
@@ -99,7 +107,6 @@ int main(){
     cin.tie(0);
 
     /* 인접 행렬을 이용한 표현법1 */
-
     //방향 그래프의 경우(Directed Graph)
     int adj_matrix[10][10]={};
     int v, e;
@@ -109,6 +116,7 @@ int main(){
         cin>>u>>v;
         adj_matrix[u][v]=1;
     }
+    /*인접 행렬을 이용한 표현법2 */
     //무방향 그래프(Undirected Graph)
     int adj_matrix[10][10]={};
     int v, e;
@@ -119,11 +127,8 @@ int main(){
         adj_matrix[u][v]=1;//무방향 그래프의 경우 양쪽으로 같이 표시를 해주어야 무방향성을 나타날 수 있다. 
         adj_matrix[v][u]=1;
     }
-    /* 인접 행렬을 이용한 표현법 1 종료--------*/
 
-    /*인접 리스트를 이용한 표현법 2 -----------*/
-    /*인접 리스트 라고 표현했지만, vector를 이용하여서 구현*/
-    
+    /*인접 리스트를 이용한 표현법 1 */
     //방향 그래프(Directed Graph)
     vector<int> adj[10]; //=> 이건 vector를 원소로 갖는 배열을 의미. 이때에 각각의 원소에 1, 2, 3, 형태로 접근하고, 각각의 원소에 대해서 개별적으로 vector가 존재하고, 그 vector로 간선을 표현
     int v, e;
@@ -134,6 +139,7 @@ int main(){
         adj[u].push_back(v);
     }
 
+    /*인접 리스트를 이용한 표현법 2*/
     //무방향 그래프(Undirected Graph)   
     vector<int> adj[10];
     int v, e;
