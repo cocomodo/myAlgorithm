@@ -1,38 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<pair<int,int>> adj[1'005];
+int n;
+vector<int> child[55];
+int root;
+int del;
+
+int go(int cur) {
+    if(cur==del) return 0;
+    if(child[cur].empty()) return 1;
+    if(child[cur].size()==1 && child[cur][0]==del) return 1;
+    int ret=0;
+    for(auto nxt: child[cur]){
+        ret+=go(nxt);
+    }
+    return ret;
+}
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-
-    int n, m, u, v, d; //이때 d는 각각의 거리값
-    cin>>n>>m;
-    for(int i=0; i<n-1; i++){
-        cin>>u>>v>>d;
-        adj[u].push_back({v,d});
-        adj[v].push_back({u,d});
-    }
     
-    while(m--){
-        cin>>u>>v;
-        queue<pair<int,int>> q;
-        vector<bool> vis(n+1);
-        q.push({u,0});
-        vis[u]=true;
-        while(!q.empty()){
-            auto [cur,dist] =q.front();
-            q.pop();
-            if(cur==v){
-                cout<<dist<<'\n';
-                break;
-            }
-            for(auto [nxt,nxtDist]: adj[cur]){
-                if(vis[nxt]) continue;
-                vis[nxt]=true;
-                q.push({nxt,dist+nxtDist});
-            }
+    cin>>n;
+    for(int i=0; i<n; i++){
+        int p;
+        cin>>p;
+        if(p==-1){
+            root=i;
+            continue;
         }
+        child[p].push_back(i);//이렇게 되면 이제 부모에서 자식으로 단방향성 이동을 보장할 수 있다. 
     }
+    cin>>del;
+    cout<<go(root)<<'\n';
 }
