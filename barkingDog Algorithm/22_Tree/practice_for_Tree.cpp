@@ -1,36 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n;
-vector<int> child[55];
-int root;
-int del;
+int n, m;
+vector<int> adj[100'005];
+bool vis[100'005];
+int cnt;
 
-int go(int cur) {
-    if(cur==del) return 0;
-    if(child[cur].empty()) return 1;
-    if(child[cur].size()==1 && child[cur][0]==del) return 1;
-    int ret=0;
-    for(auto nxt: child[cur]){
-        ret+=go(nxt);
+void dfs(int cur){
+    vis[cur]=true;
+    for(auto nxt:adj[cur]){
+        if(vis[nxt]) continue;
+        dfs(nxt);
     }
-    return ret;
 }
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
+
+    cin>>n>>m;
     
-    cin>>n;
-    for(int i=0; i<n; i++){
-        int p;
-        cin>>p;
-        if(p==-1){
-            root=i;
-            continue;
-        }
-        child[p].push_back(i);//이렇게 되면 이제 부모에서 자식으로 단방향성 이동을 보장할 수 있다. 
+    for(int i=0; i<m; i++){
+        int u, v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    cin>>del;
-    cout<<go(root)<<'\n';
+    for(int i=1; i<=n; i++){
+        if(vis[i]) continue;
+        dfs(i);
+        cnt++;
+    }
+    cout<<cnt-1+(m+cnt-1)-(n-1);
+
 }
