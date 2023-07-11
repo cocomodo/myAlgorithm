@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
+int n,m;
 vector<int> adj[32'005];
-int indeg[32'005];
+int deg[32'005];
+priority_queue<int,vector<int>, greater<int>> pq;
 
 int main(){
     ios::sync_with_stdio(0);
@@ -14,20 +15,18 @@ int main(){
         int u, v;
         cin>>u>>v;
         adj[u].push_back(v);
-        indeg[v]++;
+        deg[v]++;
     }
 
-    priority_queue<int,vector<int>,greater<>> pq;
     for(int i=1; i<=n; i++)
-        if(indeg[i]==0) pq.push(i);
-    
+        if(deg[i]==0)  pq.push(i);
+
     while(!pq.empty()){
         int cur=pq.top(); pq.pop();
-        cout<<cur<<' ';
-        for(auto nxt: adj[cur]){
-            indeg[nxt]--;
-            if(indeg[nxt]==0) pq.push(nxt);
+        cout<<cur<<' '; //이미 pq에 넣을때 if(deg[i]==0) 일때 넣어줘서, 확인해줄 필요 없다.
+        for(int nxt: adj[cur]){
+            deg[nxt]--;
+            if(deg[nxt]==0) pq.push(nxt);
         }
     }
-    
 }
