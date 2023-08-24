@@ -14,4 +14,4 @@ int main(){
         f=t.find(p,f+p.size());
     }
     cout<<cnt;
-}
+} 
